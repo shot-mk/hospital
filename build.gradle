@@ -27,6 +27,7 @@ repositories {
 
 
 dependencies {
+	//Spring Boot related
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.data:spring-data-rest-hal-browser')
@@ -38,4 +39,9 @@ dependencies {
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+
+	//hibernate
+	compile('org.hibernate:hibernate-java8')
+
+
 }

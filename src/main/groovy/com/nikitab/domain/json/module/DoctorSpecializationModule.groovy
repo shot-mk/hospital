@@ -2,6 +2,7 @@ package com.nikitab.domain.json.module
 
 import com.fasterxml.jackson.core.Version
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.databind.Module.SetupContext
 import com.fasterxml.jackson.databind.module.SimpleSerializers
 import com.nikitab.domain.enums.DoctorSpecialization
 import com.nikitab.domain.json.serializer.DoctorSpecializationSerializer

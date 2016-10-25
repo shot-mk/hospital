@@ -1,6 +1,5 @@
-package com.nikitab.domain.entity
+package com.nikitab.domain.entity.human
 
-import com.nikitab.domain.enums.DoctorSpecialization
 import com.nikitab.domain.enums.Gender
 import groovy.transform.Canonical
 
@@ -10,14 +9,17 @@ import javax.persistence.EnumType
 import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.Inheritance
+import javax.persistence.InheritanceType
 import javax.persistence.Table
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 
 @Entity
+@Table(name = "person")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Canonical
-@Table(name = "doctor")
-class Doctor {
+class Person {
 
     @Id
     @GeneratedValue
@@ -37,10 +39,5 @@ class Doctor {
     @Column(name = "gender", length = 6, nullable = false)
     @Enumerated(EnumType.STRING)
     Gender gender
-
-    @Column(name = "specialization", length = 100, nullable = false)
-    @Enumerated(EnumType.STRING)
-    DoctorSpecialization specialization
-
 
 }
