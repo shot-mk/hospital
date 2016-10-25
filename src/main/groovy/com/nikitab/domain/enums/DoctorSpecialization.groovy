@@ -1,5 +1,8 @@
 package com.nikitab.domain.enums
 
+/**
+ * Holds parameter names from messages bundle.
+ */
 enum DoctorSpecialization {
 
     AUDIOLOGIST("audiologist.name", "audiologist.description"),
