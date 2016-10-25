@@ -1,19 +1,16 @@
 package com.nikitab.domain.enums
 
-import com.fasterxml.jackson.annotation.JsonFormat
-
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 enum DoctorSpecialization {
 
-    AUDIOLOGIST("Audiologist", "This is a doctor who handles problems with hearing. These doctors also help hearing impaired children learn to communicate."),
-    ALLERGIST("Alergist", "This is a doctor who helps with allergies. Any allergies you may have, such as, hay fever or asthma will be checked out by this doctor."),
-    ANDROLOGIST("Andrologists", "An andrologist is a specialist doctor that helps in diagnosing and treating male reproductive system disorders.")
+    AUDIOLOGIST("audiologist.name", "audiologist.description"),
+    ALLERGIST("allergist.name", "allergist.description"),
+    ANDROLOGIST("andrologists.name", "andrologists.description")
 
     String description
-    String specializationTitle
+    String title
 
-    DoctorSpecialization(String specializationTitle, String description) {
-        this.specializationTitle = specializationTitle
+    DoctorSpecialization(String title, String description) {
+        this.title = title
         this.description = description
     }
 
