@@ -7,6 +7,9 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
+/**
+ * Should be used as superclass of every entity.
+ */
 @MappedSuperclass
 @Canonical
 abstract class BaseModel {
