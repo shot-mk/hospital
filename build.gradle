@@ -13,6 +13,13 @@ buildscript {
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+
+war {
+	baseName = 'hospital'
+	version = '0.0.1-SNAPSHOT'
+}
 
 jar {
 	baseName = 'hospital'
@@ -29,9 +36,9 @@ repositories {
 dependencies {
 	//Spring Boot related
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile('org.springframework.data:spring-data-rest-hal-browser')
-	compile('org.springframework.boot:spring-boot-starter-hateoas')
+//	compile('org.springframework.boot:spring-boot-starter-data-rest')
+//	compile('org.springframework.data:spring-data-rest-hal-browser')
+//	compile('org.springframework.boot:spring-boot-starter-hateoas')
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
@@ -40,8 +47,9 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 
-	//hibernate
+	//hibernate java8 types support
 	compile('org.hibernate:hibernate-java8')
-
+	//jackson java8 types support
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 
 }

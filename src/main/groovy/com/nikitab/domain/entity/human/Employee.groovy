@@ -18,7 +18,7 @@ class Employee extends Person {
     @Column(name = "date_beginning_of_work", nullable = false)
     LocalDate beginningOfWork;
 
-    @Column(name = "date_end_of_work", nullable = false)
+    @Column(name = "date_end_of_work")
     LocalDate endOfWork;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "employee")
