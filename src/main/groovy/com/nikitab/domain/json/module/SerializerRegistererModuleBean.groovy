@@ -27,5 +27,6 @@ class SerializerRegistererModuleBean extends SimpleModule {
         SimpleSerializers serializers = new SimpleSerializers()
 		serializers.addSerializers(registeredSerializers)
         context.addSerializers(serializers)
+		super.setupModule(context)
     }
 }
