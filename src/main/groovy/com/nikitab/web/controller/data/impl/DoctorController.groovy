@@ -1,14 +1,14 @@
-package com.nikitab.web.controller.impl
+package com.nikitab.web.controller.data.impl
 
 import com.nikitab.domain.entity.human.Doctor
-import com.nikitab.web.controller.BaseController
+import com.nikitab.web.controller.data.BaseController
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 import javax.validation.Valid
 
 @RestController
-@RequestMapping(path = "/doctors")
+@RequestMapping(path = "/api/doctors")
 class DoctorController extends BaseController<Doctor, Long> {
 
 	@GetMapping

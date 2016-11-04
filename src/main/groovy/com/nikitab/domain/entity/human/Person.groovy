@@ -20,7 +20,7 @@ class Person extends BaseModel {
 	@Column(name = "surname", length = 50, nullable = false)
 	String surname
 
-	@Column(name = "age", nullable = false)
+	@Column(name = "age")
 	@Min(0L)
 	@Max(120L)
 	int age

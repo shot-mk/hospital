@@ -6,6 +6,7 @@ import com.nikitab.domain.entity.security.User
 import com.nikitab.repository.PrivilegeRepository
 import com.nikitab.repository.RoleRepository
 import com.nikitab.repository.UserRepository
+import com.nikitab.system.AdminProperties
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationListener
 import org.springframework.context.event.ContextRefreshedEvent
@@ -34,6 +35,9 @@ class InitialUsersDataLoader implements ApplicationListener<ContextRefreshedEven
 	@Autowired
 	PrivilegeRepository privilegeRepository
 
+	@Autowired
+	AdminProperties adminProperties
+
 
 	@Override
 	void onApplicationEvent(ContextRefreshedEvent event) {
@@ -44,8 +48,11 @@ class InitialUsersDataLoader implements ApplicationListener<ContextRefreshedEven
 			alreadySetUp = true
 			return
 		}
+		Privilege userRead = createPrivilegeIfNotFound("USER_READ")
+		Privilege userWrite = createPrivilegeIfNotFound("USER_WRITE")
+		createRoleIfNotFound("ROLE_USER", [userWrite, userRead])
 		Privilege superAdminPrivilege = createPrivilegeIfNotFound("SUPER_ADMIN")
-		Role superAdminRole = createRoleIfNotFound("ROLE_SUPER_ADMIN", Arrays.asList(superAdminPrivilege))
+		Role superAdminRole = createRoleIfNotFound("ROLE_SUPER_ADMIN", [superAdminPrivilege])
 		createAndSaveSuperAdmin(superAdminRole)
 		alreadySetUp = true
 	}
@@ -53,8 +60,9 @@ class InitialUsersDataLoader implements ApplicationListener<ContextRefreshedEven
 	@Transactional
 	private createAndSaveSuperAdmin(Role superAdminRole) {
 		User superAdmin = new User()
-		superAdmin.username = "admin"
-		superAdmin.password = passwordEncoder.encode("admin")
+		superAdmin.username = adminProperties.name
+		superAdmin.password = passwordEncoder.encode(adminProperties.password)
+		superAdmin.email = adminProperties.email
 		superAdmin.roles << superAdminRole
 		userRepository.save(superAdmin)
 	}

@@ -1,16 +1,16 @@
-package com.nikitab.web.controller
+package com.nikitab.web.controller.data
 
 import com.nikitab.domain.entity.BaseModel
-import com.nikitab.service.BaseService
+import com.nikitab.service.BaseServiceImpl
 import com.nikitab.web.error.RestPreconditions
 import org.springframework.beans.factory.annotation.Autowired
 
 class BaseController<MODEL extends BaseModel, ID extends Serializable> {
 
-	private BaseService<MODEL, ID> baseService
+	private BaseServiceImpl<MODEL, ID> baseService
 
 	@Autowired
-	void setService(BaseService<MODEL, ID> service) {
+	void setService(BaseServiceImpl<MODEL, ID> service) {
 		this.baseService = service
 	}
 

@@ -19,7 +19,7 @@ class HospitalApplication extends SpringBootServletInitializer {
 
 	@Bean
 	ServletRegistrationBean dispatcherServletRegistration() {
-		final ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet(), "/api/*")
+		final ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet(), "/*")
 		Map<String, String> params = new HashMap<>()
 		params << ["contextClass" : "org.springframework.context.annotation.AnnotationConfigApplicationContext"]
 		params << ["dispatchOptionsRequest": "true"]

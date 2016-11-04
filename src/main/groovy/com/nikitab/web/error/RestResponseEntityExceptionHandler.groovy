@@ -2,6 +2,8 @@ package com.nikitab.web.error
 
 import com.nikitab.web.error.dto.ApiError
 import com.nikitab.web.error.exception.BadRequestException
+import com.nikitab.web.error.exception.EmailAlreadyInUserException
+import com.nikitab.web.error.exception.UsernameAlreadyInUseException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.dao.DataIntegrityViolationException
@@ -29,7 +31,6 @@ class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler 
 		return handleExceptionInternal(ex, getMessage(HttpStatus.BAD_REQUEST, ex), headers, HttpStatus.BAD_REQUEST, request)
 	}
 
-
 	@Override
 	ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 		return handleExceptionInternal(ex, getMessage(HttpStatus.BAD_REQUEST, ex), headers, HttpStatus.BAD_REQUEST, request)
@@ -37,6 +38,11 @@ class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler 
 
 	@ExceptionHandler(value = [DataIntegrityViolationException.class, BadRequestException.class])
 	ResponseEntity<Object> handleBadRequest(DataIntegrityViolationException ex, WebRequest request) {
+		return handleExceptionInternal(ex, getMessage(HttpStatus.BAD_REQUEST, ex), new HttpHeaders(), HttpStatus.BAD_REQUEST, request)
+	}
+
+	@ExceptionHandler(value = [UsernameAlreadyInUseException.class, EmailAlreadyInUserException.class])
+	ResponseEntity<Object> handleUserRegistration(DataIntegrityViolationException ex, WebRequest request) {
 		return handleExceptionInternal(ex, getMessage(HttpStatus.BAD_REQUEST, ex), new HttpHeaders(), HttpStatus.BAD_REQUEST, request)
 	}
 
@@ -55,4 +61,5 @@ class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler 
 		}
 		return result;
 	}
+
 }

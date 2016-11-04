@@ -2,11 +2,13 @@ package com.nikitab.domain.entity.security
 
 import com.nikitab.domain.entity.BaseModel
 import com.nikitab.domain.entity.human.Person
+import com.nikitab.domain.validation.ValidEmail
 import groovy.transform.Canonical
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 import javax.persistence.*
+import javax.validation.constraints.NotNull
 import java.util.stream.Collectors
 
 @Entity
@@ -14,7 +16,7 @@ import java.util.stream.Collectors
 @Canonical
 class User extends BaseModel implements UserDetails {
 
-	@OneToOne
+	@OneToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
 	@JoinColumn(name = "person_id")
 	Person person
 
@@ -23,6 +25,11 @@ class User extends BaseModel implements UserDetails {
 
 	@Column(name = "password_hash")
 	String password
+
+	@Column(name = "email")
+	@NotNull
+	@ValidEmail
+	String email
 
 	@Column(name = "account_non_expired")
 	boolean accountNonExpired = true
