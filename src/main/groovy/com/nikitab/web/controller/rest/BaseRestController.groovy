@@ -1,11 +1,11 @@
-package com.nikitab.web.controller.data
+package com.nikitab.web.controller.rest
 
 import com.nikitab.domain.entity.BaseModel
 import com.nikitab.service.BaseServiceImpl
 import com.nikitab.web.error.RestPreconditions
 import org.springframework.beans.factory.annotation.Autowired
 
-class BaseController<MODEL extends BaseModel, ID extends Serializable> {
+class BaseRestController<MODEL extends BaseModel, ID extends Serializable> {
 
 	private BaseServiceImpl<MODEL, ID> baseService
 
