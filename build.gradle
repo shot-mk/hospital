@@ -4,8 +4,10 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		maven { url 'http://repo.spring.io/plugins-release' }
 	}
 	dependencies {
+		classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
@@ -15,6 +17,13 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 
+
+configure(allprojects) {
+	apply plugin: 'propdeps'
+	apply plugin: 'propdeps-maven'
+	apply plugin: 'propdeps-idea'
+	apply plugin: 'propdeps-eclipse'
+}
 
 war {
 	baseName = 'hospital'
@@ -51,5 +60,7 @@ dependencies {
 	compile('org.hibernate:hibernate-java8')
 	//jackson java8 types support
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
-
+	optional "org.springframework.boot:spring-boot-configuration-processor"
 }
+compileJava.dependsOn(processResources)
+
