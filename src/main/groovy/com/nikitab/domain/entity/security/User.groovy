@@ -16,17 +16,17 @@ import java.util.stream.Collectors
 @Canonical
 class User extends BaseModel implements UserDetails {
 
-	@OneToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
+	@OneToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	Person person
 
-	@Column(name = "username")
+	@Column(name = "username", unique = true)
 	String username
 
 	@Column(name = "password_hash")
 	String password
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	@NotNull
 	@ValidEmail
 	String email

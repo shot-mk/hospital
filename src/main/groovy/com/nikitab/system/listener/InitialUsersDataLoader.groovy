@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional
 
 /**
  * Bean responsible for creating initial admin user that will be the super user from
- * very beginning, when there is no data in database yet.
+ * very beginning, when there is no rest in database yet.
  */
 @Component
 class InitialUsersDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -44,7 +44,7 @@ class InitialUsersDataLoader implements ApplicationListener<ContextRefreshedEven
 		if (alreadySetUp) {
 			return
 		}
-		if (userRepository.findByUsername("admin")) {
+		if (userRepository.findByUsername(adminProperties.name)) {
 			alreadySetUp = true
 			return
 		}
