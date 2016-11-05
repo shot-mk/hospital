@@ -1,16 +1,15 @@
 package com.nikitab.domain.entity.schedule
 
+import com.nikitab.domain.entity.DefaultEntity
 import com.nikitab.domain.entity.BaseModel
 import com.nikitab.domain.entity.human.Employee
-import groovy.transform.Canonical
 
 import javax.persistence.*
 import java.time.LocalDate
 import java.time.LocalTime
 
-@Entity
+@DefaultEntity
 @Table(name = "schedule")
-@Canonical
 class Schedule extends BaseModel {
 
 	@ManyToOne(fetch = FetchType.LAZY)

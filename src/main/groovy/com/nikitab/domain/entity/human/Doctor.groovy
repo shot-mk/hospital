@@ -1,14 +1,13 @@
 package com.nikitab.domain.entity.human
 
+import com.nikitab.domain.entity.DefaultEntity
 import com.nikitab.domain.enums.DoctorSpecialization
-import groovy.transform.Canonical
 
 import javax.persistence.*
 
-@Entity
-@Canonical
-@PrimaryKeyJoinColumn(name = "id")
+@DefaultEntity
 @Table(name = "doctor")
+@PrimaryKeyJoinColumn(name = "id")
 class Doctor extends Employee {
 
     @Column(name = "specialization", length = 100, nullable = false)

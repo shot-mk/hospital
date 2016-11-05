@@ -1,15 +1,14 @@
 package com.nikitab.domain.entity.human
 
+import com.nikitab.domain.entity.DefaultEntity
 import com.nikitab.domain.entity.schedule.Schedule
-import groovy.transform.Canonical
 
 import javax.persistence.*
 import java.time.LocalDate
 
-@Entity
+@DefaultEntity
 @Table(name = "employee")
 @PrimaryKeyJoinColumn(name = "id")
-@Canonical
 class Employee extends Person {
 
     @Column(name = "salary")
