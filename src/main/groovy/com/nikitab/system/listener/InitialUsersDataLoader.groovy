@@ -70,13 +70,13 @@ class InitialUsersDataLoader implements ApplicationListener<ContextRefreshedEven
 	@Transactional
 	private Role createRoleIfNotFound(String name, List<Privilege> privileges) {
 		Role role = roleRepository.findByName(name)
-		role ? role : roleRepository.save(new Role(name: name, privileges: privileges))
+		role ?: roleRepository.save(new Role(name: name, privileges: privileges))
 	}
 
 	@Transactional
 	private Privilege createPrivilegeIfNotFound(String name) {
 		Privilege privilege = privilegeRepository.findByName(name)
-		privilege ? privilege : privilegeRepository.save(new Privilege(name: name))
+		privilege ?: privilegeRepository.save(new Privilege(name: name))
 	}
 
 }
